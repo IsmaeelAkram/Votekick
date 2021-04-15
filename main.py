@@ -41,4 +41,15 @@ async def on_ready():
     log.good("Presence changed")
 
 
+@bot.event
+async def on_reaction_add(reaction: discord.Reaction, user: discord.User):
+    if reaction.message.author.id == bot.user.id:
+        log.info(f"Removed reaction from {user.name}: '{str(reaction.emoji).strip()}'")
+        if str(reaction.emoji).strip() == "✅":
+            return
+        if str(reaction.emoji).strip() == "❌":
+            return
+        await reaction.message.clear_reaction(reaction.emoji)
+
+
 start(os.getenv("TOKEN"))
