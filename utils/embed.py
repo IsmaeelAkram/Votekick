@@ -2,9 +2,9 @@ import discord
 
 
 def Embed(
-    description=None,
+    description="",
     image=None,
-    title=None,
+    title="",
     color=0x10C42E,
     footer="Votekick",
 ):
