@@ -57,7 +57,7 @@ async def on_reaction_add(reaction: discord.Reaction, user: discord.User):
             except:
                 vote_requirement_count = 3
             reactions = discord.utils.get(reaction.message.reactions, emoji="✅")
-            if reactions.count >= vote_requirement_count:
+            if reactions.count >= vote_requirement_count + 1:
                 await kick.kick(bot, reaction.message, db)
         else:
             log.info(
