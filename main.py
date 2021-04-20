@@ -17,11 +17,11 @@ cogs = []
 def add_cog(cog):
     bot.add_cog(cog)
     cogs.append(cog)
-    print(chalk.cyan(f"Loaded cog: {cog}"))
+    log.good("Loaded cog: " + str(cog))
 
 
 def register_cogs():
-    print(chalk.yellow("Loading cogs..."))
+    log.info("Loading cogs")
     add_cog(votekick.VotekickCommands(bot))
 
 
@@ -44,11 +44,11 @@ async def on_ready():
 @bot.event
 async def on_reaction_add(reaction: discord.Reaction, user: discord.User):
     if reaction.message.author.id == bot.user.id:
-        log.info(f"Removed reaction from {user.name}: '{str(reaction.emoji).strip()}'")
         if str(reaction.emoji).strip() == "✅":
             return
         if str(reaction.emoji).strip() == "❌":
             return
+        log.info(f"Removed reaction from {user.name}: '{str(reaction.emoji).strip()}'")
         await reaction.message.clear_reaction(reaction.emoji)
 
 
