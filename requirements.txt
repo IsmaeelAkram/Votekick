@@ -1,3 +1,4 @@
 pychalk
 discord.py
-python-dotenv
+python-dotenv~=0.17.0
+tinydb~=4.4.0
