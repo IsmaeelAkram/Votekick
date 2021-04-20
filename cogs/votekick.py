@@ -54,4 +54,3 @@ class VotekickCommands(commands.Cog):
             )
         )
         await message.add_reaction("✅")
-        await message.add_reaction("❌")
