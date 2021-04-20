@@ -1,17 +1,20 @@
 from dotenv import load_dotenv
 import discord
 from discord.ext import commands
-import chalk
+from tinydb import TinyDB
 import os
 
 import log
-from utils import embed
+from utils import kick
 from cogs import votekick
 
 load_dotenv()
 bot = commands.Bot(command_prefix="!")
 bot.remove_command("help")
 cogs = []
+
+db = TinyDB("db.json")
+requests_table = db.table("requests")
 
 
 def add_cog(cog):
@@ -22,14 +25,14 @@ def add_cog(cog):
 
 def register_cogs():
     log.info("Loading cogs")
-    add_cog(votekick.VotekickCommands(bot))
+    add_cog(votekick.VotekickCommands(bot, db))
 
 
 def start(token):
     register_cogs()
     log.info("Starting bot")
     bot.run(token)
-    log.good("Bot started")
+    log.danger("Bot stopped")
 
 
 @bot.event
@@ -45,6 +48,9 @@ async def on_ready():
 async def on_reaction_add(reaction: discord.Reaction, user: discord.User):
     if reaction.message.author.id == bot.user.id:
         if str(reaction.emoji).strip() == "✅":
+            reactions = discord.utils.get(reaction.message.reactions, emoji="✅")
+            if reactions.count >= 4:
+                await kick.kick(bot, reaction.message, db)
             return
         if str(reaction.emoji).strip() == "❌":
             return
