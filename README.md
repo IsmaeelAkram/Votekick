@@ -22,15 +22,15 @@ docker run -it --rm votekick-bot
 ```
 
 ### Without Docker
-Install dependencies with
+Install dependencies with:
 ```shell
 pip install -r requirements.txt
 ```
-make sure your token is set in `.env`
+make sure your token is set in `.env` like this:
 ```ini
 TOKEN="BlahBlahBlah"
 ```
-and run with
+and run the program with:
 ```shell
 python main.py
 ```
