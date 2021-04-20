@@ -11,7 +11,7 @@ async def kick(bot: commands.Bot, vote_message: discord.Message, db: TinyDB):
     request = db.table("requests").search(where("request_id") == request_id)[0]
     user = await bot.fetch_user(request["user_id"])
 
-    await vote_message.guild.kick(user, request["reason"])
+    await vote_message.guild.kick(user, reason=request["reason"])
     await vote_message.channel.send(
         embed=embed.Embed(
             description=f"Kicked {user.mention} for `{request['reason']}.`",

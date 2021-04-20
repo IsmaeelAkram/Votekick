@@ -18,7 +18,9 @@ class VoteRequirement(commands.Cog):
             vote_requirement_table.insert({"guild_id": ctx.guild.id, "count": count})
         else:
             vote_requirement_table.remove(where("guild_id") == ctx.guild.id)
-            vote_requirement_table.insert({"guild_id": ctx.guild.id, "count": count})
+            vote_requirement_table.insert(
+                {"guild_id": ctx.guild.id, "count": count + 1}
+            )
 
         await ctx.channel.send(
             embed=embed.Embed(
