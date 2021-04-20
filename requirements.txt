@@ -1,0 +1,3 @@
+pychalk
+discord.py
+python-dotenv
