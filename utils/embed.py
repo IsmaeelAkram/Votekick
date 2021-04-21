@@ -6,7 +6,7 @@ def Embed(
     image=None,
     title="",
     color=0x10C42E,
-    footer="Votekick",
+    footer="",
 ):
     return discord.Embed(
         description=description, image=image, title=title, color=color
