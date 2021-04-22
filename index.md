@@ -1,37 +1,36 @@
-## Welcome to GitHub Pages
+# Votekick
+ Allow chatters to collectively kick mischievous people in your Discord server!
 
-You can use the [editor on GitHub](https://github.com/IsmaeelAkram/Votekick/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+## Commands
+### `!votekick <user> <reason>`
+#### Aliases: `!vk`
+Starts a vote to kick someone for a reason.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### `!vote_requirement`
+#### Default: `3`
+Changes the requirement amount of votes to kick someone.
 
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+## Setup
+### With Docker
+The easiest way to get started is using Docker. Build the docker image using:
+```shell
+docker build -t votekick-bot .
+```
+and run it using:
+```shell
+docker run -it --rm votekick-bot
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/IsmaeelAkram/Votekick/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### Without Docker
+Install dependencies with:
+```shell
+pip install -r requirements.txt
+```
+make sure your token is set in `.env` like this:
+```ini
+TOKEN="BlahBlahBlah"
+```
+and run the program with:
+```shell
+python main.py
+```
