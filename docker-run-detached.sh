@@ -1,1 +1,1 @@
-docker run -d -it --rm votekick-bot
+docker run -d --restart="always" --name votekick -it votekick-bot
